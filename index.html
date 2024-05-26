@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM Manipulation</title>
     <style>
+      *{
+             margin: 0;
+  
+        
+      }
         .container {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh; /* Full viewport height */
-            border: 1px solid red;
+
+     
+
         }
 
         .sub-container {
@@ -19,7 +26,6 @@
             align-items: center;
             height: 100vh;
             width: 50%;
-            border: 1px solid;
         }
 
         .plus-button {
@@ -53,7 +59,7 @@
         function createNewContainer() {
             const newContainer = document.createElement('div');
             newContainer.className = 'sub-container';
-            newContainer.style.borderColor = getRandomColor();
+            newContainer.style.backgroundColor = getRandomColor();
 
             const newButton = document.createElement('button');
             newButton.className = 'plus-button';
