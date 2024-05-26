@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            border: 1px solid red;
+        }
+
+        .sub-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            width: 50vw;
+            margin: 5px;
+            border: 1px solid;
+        }
+
+        .plus-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background-color: transparent;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <button class="plus-button" id="main-button">+</button>
+    </div>
+
+    <script>
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function createNewContainer() {
+            const newContainer = document.createElement('div');
+            newContainer.className = 'sub-container';
+            newContainer.style.borderColor = getRandomColor();
+
+            const newButton = document.createElement('button');
+            newButton.className = 'plus-button';
+            newButton.textContent = '+';
+            newButton.addEventListener('click', handleButtonClick);
+
+            newContainer.appendChild(newButton);
+            return newContainer;
+        }
+
+        function handleButtonClick(event) {
+            const parentContainer = event.target.parentElement;
+            parentContainer.innerHTML = ''; // Remove the button
+
+            const newContainer1 = createNewContainer();
+            const newContainer2 = createNewContainer();
+
+            parentContainer.appendChild(newContainer1);
+            parentContainer.appendChild(newContainer2);
+        }
+
+        document.getElementById('main-button').addEventListener('click', handleButtonClick);
+    </script>
+</body>
+</html>
